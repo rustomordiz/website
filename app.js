@@ -45,6 +45,32 @@ function PageTransitions(){
         let element = document.body;
         element.classList.toggle('light-mode')
     })
+
+    // Handle hash on page load
+    window.addEventListener('load', () => {
+        const hash = window.location.hash.substring(1); // remove #
+
+        if (hash) {
+            // Remove active from all sections
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Activate correct section
+            const targetSection = document.getElementById(hash);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update active button
+            sectBtn.forEach(btn => {
+                btn.classList.remove('active-btn');
+                if (btn.dataset.id === hash) {
+                    btn.classList.add('active-btn');
+                }
+            });
+        }
+    });
 }
 
 PageTransitions();

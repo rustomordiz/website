@@ -40,7 +40,7 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: 1.1rem;
     color: var(--color-white);
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 a{
@@ -67,7 +67,7 @@ section{
 
 .section{
     transform: translateY(-100%) scale(0);
-    transition: all .4s ease-in-out;
+    transition: all .3s ease-in-out;
     background-color: var(--color-primary);
 }
 
@@ -117,7 +117,7 @@ section{
     transform: translateY(-50%);
     .active-btn{
         background-color: var(--color-secondary) !important;
-        transition: all .4s ease-in-out;
+        transition: all .3s ease-in-out;
         i{
             color:var(--color-white) !important;
         }
@@ -176,7 +176,7 @@ section{
         align-items: center;
         position: relative;
         .h-shape{
-            transition: all .4s ease-in-out;
+            transition: all .3s ease-in-out;
             width: 65%;
             height: 100%;
             background-color: var(--color-secondary);
@@ -194,12 +194,12 @@ section{
             width: 68%;
             margin-left: 4rem;
             background-color: var(--color-black);
-            transition: all .4s ease-in-out;
+            transition: all .3s ease-in-out;
             img{
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: all .4s ease-in-out;
+                transition: all .3s ease-in-out;
                 // filter: grayscale(100%);
                 // &:hover{
                 //     filter: grayscale(0);
@@ -240,7 +240,7 @@ section{
         .about-item{
             border: 1px solid var(--color-grey-5);
             border-radius: 5px;
-            transition: all .4s ease-in-out;
+            transition: all .3s ease-in-out;
             box-shadow: 1px 2px 15px rgba(0,0,0,.1);
             &:hover{
                 cursor: default;
@@ -324,7 +324,7 @@ section{
                         left: 0;
                         height: 100%;
                         background-color: var(--color-secondary);
-                        transition: all .4s ease-in-out;
+                        transition: all .3s ease-in-out;
                         width: 60%;
                     }
 
@@ -458,7 +458,7 @@ section{
             flex-direction: column;
             opacity: 0;
             transform: scale(0);
-            transition: all .4s ease-in-out;
+            transition: all .3s ease-in-out;
             h3{
                 font-size: 1.5rem;
                 color: var(--color-white);
@@ -478,7 +478,7 @@ section{
                     justify-content: center;
                     margin: 0 1rem;
                     cursor: pointer;
-                    transition: all .4s ease-in-out;
+                    transition: all .3s ease-in-out;
                     i{
                         font-size: 1.5rem;
                         color: var(--color-white);
@@ -501,6 +501,115 @@ section{
     opacity: 1;
     transform: scale(1);
 }
+
+////////////////
+
+// // Portfolio Container (Flexbox Layout)
+// .portfolio-container {
+//     display: flex;
+//     justify-content: space-between;
+//     gap: 2rem;
+//     margin-bottom: 3rem;
+    
+//     .left-portfolio,
+//     .right-portfolio {
+//         flex: 1;
+//     }
+  
+//     .portfolio-item {
+//       margin-top: 2rem;
+//     }
+// }
+  
+// // Project Overview Styling
+// .left-portfolio {
+//     h4 {
+//         font-size: 1.5rem;
+//         color: var(--color-secondary);
+//         margin-bottom: 1rem;
+//     }
+
+//     p {
+//         font-size: 1rem;
+//         line-height: 1.6;
+//         color: var(--color-grey-3);
+//         margin-bottom: 1.5rem;
+//     }
+// }
+
+// // Screenshot Gallery Container
+// .screenshot-gallery {
+//     display: flex;
+//     justify-content: space-between;
+//     gap: 1rem;
+//     margin-top: 1.5rem;
+//     flex-wrap: wrap;  // Allow items to wrap if needed
+//   }
+  
+// // Frame for each screenshot image
+// .screenshot-frame {
+//     width: 100%;
+//     max-width: 400px;  // Limit the frame size
+//     height: auto;
+//     background-color: #f7f7f7; // Light background color for the frame
+//     padding: 1rem;  // Padding around the image
+//     border-radius: 10px;  // Rounded corners for the frame
+//     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Subtle shadow around the frame
+//     overflow: hidden;  // Make sure the image stays within the frame
+
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// // Image inside the frame
+// .portfolio-screenshot {
+//     width: 100%;
+//     height: auto;
+//     object-fit: cover;  // Ensure the image is cropped to fit within the frame if necessary
+//     border-radius: 8px;  // Slight rounding on the image itself
+//     transition: transform 0.3s ease-in-out;
+// }
+
+// .portfolio-screenshot:hover {
+//     transform: scale(1.05); // Slight zoom effect on hover
+// }
+  
+  
+// // Technologies Section
+// .portfolio-tech {
+//     margin-top: 3rem;
+
+//     .tech-title {
+//         font-size: 1.5rem;
+//         color: var(--color-secondary);
+//         margin-bottom: 1rem;
+//     }
+
+//     .tech-list {
+//         ul {
+//         display: flex;
+//         flex-wrap: wrap;
+//         gap: 1rem;
+//         list-style-type: none;
+//         padding: 0;
+
+//             li {
+//                 background-color: var(--color-grey-4);
+//                 padding: 0.5rem 1rem;
+//                 border-radius: 20px;
+//                 color: var(--color-white);
+//                 font-size: 1rem;
+//                 font-weight: 500;
+//                 transition: background-color 0.3s ease;
+
+//                 &:hover {
+//                 background-color: var(--color-secondary);
+//                 }
+//             }
+//         }
+//     }
+// }
 
 // Contact section
 .contact-content-con{
@@ -553,7 +662,7 @@ section{
                 height: 50px;
                 border-radius: 50%;
                 margin: 0 .4rem;
-                transition: all .4s ease-in-out;
+                transition: all .3s ease-in-out;
                 &:hover{
                     background-color: var(--color-secondary);
                     i{
@@ -639,7 +748,7 @@ section{
         top: 0;
         right: 0;
         transform: translateX(100%);
-        transition: all .4s ease-out;
+        transition: all .3s ease-out;
         z-index: -1;
     }
     &:hover{
@@ -648,7 +757,7 @@ section{
             height: 100%;
             background-color: var(--color-secondary);
             transform: translateX(0);
-            transition: all .4s ease-out;
+            transition: all .3s ease-out;
         }
     }
 }
@@ -668,7 +777,7 @@ section{
             top: 50%;
             left: 50%;
             color: var(--color-grey-5);
-            transition: all .4s ease-in-out;
+            transition: all .3s ease-in-out;
             z-index: -1;
             transform: translate(-50%, -50%);
             font-weight: 800;
