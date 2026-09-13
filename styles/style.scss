@@ -707,30 +707,50 @@ section{
 }
 
 // Certificate Section
-.certificates-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
+/* ==========================================================================
+   Certificates Section (Clean 3-Column UI/UX Overhaul)
+   ========================================================================== */
+
+.certificates {
+    padding: 4rem 0;
+
+    .port-text {
+        text-align: center;
+        max-width: 650px;
+        margin: 0 auto 3rem auto;
+        color: var(--color-grey-2);
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
+    .certificates-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        padding-bottom: 3rem;
+
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
 
     .cert-card {
         background-color: var(--color-grey-5);
         border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
+        border-radius: 12px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
         &:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
             border-color: var(--color-secondary);
-            box-shadow: 0 15px 35px rgba(39, 174, 96, 0.15);
 
             .cert-media img {
-                transform: scale(1.06);
+                transform: scale(1.05);
             }
 
             .cert-overlay {
@@ -738,25 +758,28 @@ section{
             }
         }
 
+        /* 16:9 Image Aspect Ratio Container */
         .cert-media {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
+            background-color: #0b0f19;
             overflow: hidden;
-            background-color: var(--color-black);
 
             img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
-                transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+                object-position: top center;
+                display: block;
+                transition: transform 0.4s ease;
             }
 
             .cert-overlay {
                 position: absolute;
                 inset: 0;
-                background: rgba(25, 29, 43, 0.6);
-                backdrop-filter: blur(4px);
+                background: rgba(15, 23, 42, 0.65);
+                backdrop-filter: blur(3px);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -772,11 +795,14 @@ section{
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-size: 1.1rem;
-                    transition: transform 0.2s ease;
+                    font-size: 1.2rem;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                    transition: transform 0.2s ease, background-color 0.2s ease;
 
                     &:hover {
-                        transform: scale(1.1);
+                        transform: scale(1.15);
+                        background-color: var(--color-white);
+                        color: var(--color-secondary);
                     }
                 }
             }
@@ -795,56 +821,86 @@ section{
                 margin-bottom: 0.75rem;
 
                 .cert-tag {
-                    font-size: 0.78rem;
-                    font-weight: 500;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    padding: 0.25rem 0.75rem;
-                    border-radius: 20px;
-                    background-color: rgba(255, 255, 255, 0.06);
-                    color: var(--color-grey-1);
                     display: inline-flex;
                     align-items: center;
                     gap: 0.4rem;
+                    font-size: 0.75rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    color: var(--color-secondary);
+                    background-color: rgba(39, 204, 132, 0.1);
+                    padding: 0.25rem 0.65rem;
+                    border-radius: 4px;
+
+                    &.date {
+                        color: var(--color-grey-2);
+                        background-color: rgba(255, 255, 255, 0.05);
+                    }
 
                     i {
-                        color: var(--color-secondary);
+                        font-size: 0.7rem;
                     }
                 }
             }
 
             .cert-name {
-                font-size: 1.25rem;
-                font-weight: 600;
+                font-size: 1.15rem;
+                font-weight: 700;
                 color: var(--color-white);
                 line-height: 1.4;
                 margin-bottom: 0.6rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
 
             .cert-desc {
-                font-size: 0.92rem;
+                font-size: 0.88rem;
                 color: var(--color-grey-2);
-                line-height: 1.6;
+                line-height: 1.5;
                 margin-bottom: 1.5rem;
-                flex-grow: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
 
             .cert-footer {
-                display: flex;
-                align-items: center;
-                justify-content: flex-start;
+                margin-top: auto;
                 padding-top: 1rem;
                 border-top: 1px solid rgba(255, 255, 255, 0.05);
 
                 .cert-btn {
-                    margin: 0;
-                    
-                    .btn-text {
-                        padding: 0 1.25rem;
-                        font-size: 0.9rem;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    width: 100%;
+                    padding: 0.65rem 1.25rem;
+                    border-radius: 6px;
+                    background-color: transparent;
+                    border: 1px solid var(--color-secondary);
+                    color: var(--color-white);
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                    text-decoration: none;
+                    transition: all 0.25s ease;
+
+                    i {
+                        color: var(--color-secondary);
+                        transition: color 0.25s ease, transform 0.25s ease;
                     }
-                    .btn-icon {
-                        padding: 0.75rem;
+
+                    &:hover {
+                        background-color: var(--color-secondary);
+                        color: var(--color-white);
+
+                        i {
+                            color: var(--color-white);
+                            transform: translateY(-1px);
+                        }
                     }
                 }
             }
