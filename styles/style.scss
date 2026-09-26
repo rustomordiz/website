@@ -1,8 +1,3 @@
-// ==========================================================================
-// Rustom Anthony Ordiz — Portfolio Stylesheet (SCSS source)
-// Compile with: sass styles/style.scss styles/style.css
-// ==========================================================================
-
 * {
   margin: 0;
   padding: 0;
@@ -212,9 +207,8 @@ section {
 
 .header-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 42% 1fr;
   height: 100%;
-  gap: 2rem;
 
   .left-header {
     display: flex;
@@ -236,8 +230,8 @@ section {
     .image {
       border-radius: var(--br-sm-2);
       height: 90%;
-      width: 72%;
-      margin-left: 4rem;
+      width: 88%;
+      margin-left: 3rem;
       background-color: var(--color-black);
       transition: var(--transition-1);
       box-shadow: var(--box-shadow-1);
@@ -255,7 +249,7 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 4rem;
+    padding-left: 1rem;
 
     .name {
       font-size: 2.85rem;
@@ -283,6 +277,7 @@ section {
 .about-container {
   display: grid;
   grid-template-columns: 1.1fr .9fr;
+  align-items: start;
   gap: 3rem;
   padding-top: 3.5rem;
   padding-bottom: 5rem;
@@ -410,8 +405,8 @@ section {
           .openai { width: 90%; }
           .langchain { width: 80%; }
           .python { width: 75%; }
-          .html { width: 85%; }
-          .linux { width: 70%; }
+          .html { width: 80%; }
+          .linux { width: 75%; }
           .git { width: 85%; }
         }
       }
@@ -991,7 +986,6 @@ section {
 
 @media screen and (max-width: 1200px) {
   :root { --section-pad-x: 4rem; }
-  .header-content .right-header { padding-right: 0; }
   .portfolios { grid-template-columns: repeat(2, 1fr); }
 }
 
