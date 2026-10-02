@@ -1,0 +1,106 @@
+name: Check & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Catches SCSS syntax errors before they reach the live site.
+      - name: Compile SCSS
+        run: |
+          npm install -g sass
+          sass --no-source-map styles/style.scss /tmp/style.css
+
+      # Fails if index.html references a local image/PDF/script/stylesheet
+      # that doesn't exist in the repo (e.g. a certificate you forgot to add).
+      - name: Check referenced local files exist
+        run: |
+          python3 - << 'PY'
+          import os, sys
+          from html.parser import HTMLParser
+
+          class P(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.refs = []
+              def handle_starttag(self, tag, attrs):
+                  for k, v in attrs:
+                      if k in ("src", "href") and v:
+                          self.refs.append(v)
+
+          p = P()
+          p.feed(open("index.html", encoding="utf-8").read())
+
+          skip = ("http://", "https://", "mailto:", "tel:", "#", "data:", "//")
+          missing = sorted({r.split("?")[0].split("#")[0] for r in p.refs
+                            if not r.startswith(skip)
+                            and not os.path.exists(r.split("?")[0].split("#")[0])})
+
+          for m in missing:
+              print(f"::error file=index.html::Missing file: {m}")
+          sys.exit(1 if missing else 0)
+          PY
+
+      # Stops placeholder text from going live.
+      - name: Check for unfinished placeholders
+        run: |
+          if grep -n "add date" index.html; then
+            echo "::error file=index.html::Placeholder date still present"
+            exit 1
+          fi
+
+  build:
+    needs: checks          # a failed check blocks the deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # CSS is always built from SCSS here, so style.css can't drift again.
+      - name: Build site
+        run: |
+          npm install -g sass
+          mkdir _site
+          rsync -a \
+            --exclude='.git' --exclude='.github' --exclude='_site' \
+            --exclude='node_modules' --exclude='*.scss' \
+            ./ _site/
+          sass --no-source-map styles/style.scss _site/styles/style.css
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
