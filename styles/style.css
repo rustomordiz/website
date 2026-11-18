@@ -391,7 +391,7 @@ section {
 .about-stats .progress-bars .progress-bar .progress-con .progress .mysql { width: 95%; }
 .about-stats .progress-bars .progress-bar .progress-con .progress .openai { width: 90%; }
 .about-stats .progress-bars .progress-bar .progress-con .progress .langchain { width: 80%; }
-.about-stats .progress-bars .progress-bar .progress-con .progress .python { width: 75%; }
+.about-stats .progress-bars .progress-bar .progress-con .progress .python { width: 80%; }
 .about-stats .progress-bars .progress-bar .progress-con .progress .html { width: 80%; }
 .about-stats .progress-bars .progress-bar .progress-con .progress .linux { width: 75%; }
 .about-stats .progress-bars .progress-bar .progress-con .progress .git { width: 85%; }
